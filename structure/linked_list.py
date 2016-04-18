@@ -6,7 +6,7 @@ class LinkedList:
         root = Node(value)
         self.root = root
         self.last = root
-        self.current = root
+        self.__current__ = root
 
     def push(self, value):
         node = Node(value)
@@ -15,15 +15,15 @@ class LinkedList:
         return self
 
     def __iter__(self):
-        self.current = self.root
+        self.__current__ = self.root
         return self
 
     def next(self):
-        if self.current is None:
+        if self.__current__ is None:
             raise StopIteration
         else:
-            current = self.current
-            self.current = self.current.next_node
+            current = self.__current__
+            self.__current__ = self.__current__.next_node
             return current
 
     def __str__(self):
