@@ -4,3 +4,6 @@
 
 # VENV
 venv/
+
+# PYTHON DIST
+*.egg-info
