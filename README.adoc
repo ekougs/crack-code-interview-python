@@ -1,0 +1,14 @@
+= Crack the code interview exercises in Python
+:hardbreaks:
+
+== Create a virtual environment with venv
+
+To avoid polluting your python environment
+
+== Install dependencies
+
+Use pip
+On Windows
+----
+./venv/Lib/pip install -e ./
+----
