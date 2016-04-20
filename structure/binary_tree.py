@@ -1,5 +1,5 @@
 class BinaryTreeNode:
-    def __init__(self, left, right, value=None):
+    def __init__(self, left=None, right=None, value=None):
         self.value = value
         self.left = left
         self.right = right
@@ -39,21 +39,31 @@ class BinaryTree:
 
     def insert(self, key):
         if self.contains(key):
-            return
+            return self._get(self.root, key)
         if self.root is BinaryTree.EMPTY_NODE:
             self.root = BinaryTree._leaf(key)
+            return self.root
         else:
-            self._insert(self.root, key)
+            return self._insert(self.root, key)
 
     def _insert(self, node, key):
         if key < node.value and node.left is self.EMPTY_NODE:
             node.left = BinaryTree._leaf(key)
+            return node.left
         elif key > node.value and node.right is self.EMPTY_NODE:
             node.right = BinaryTree._leaf(key)
+            return node.right
         elif key < node.value:
-            self._insert(node.left, key)
+            return self._insert(node.left, key)
         elif key > node.value:
-            self._insert(node.right, key)
+            return self._insert(node.right, key)
+
+    def _get(self, node, key):
+        if node.value == key:
+            return node
+        elif key > node.value:
+            return self._get(node.right, key)
+        return self._get(node.left, key)
 
     def size(self):
         return self._size(self.root)
