@@ -9,9 +9,19 @@ class BinaryTreeNode:
             return False
         return other.value == self.value
 
+    def left_empty(self):
+        return BinaryTreeNode._empty_node(self.left)
+
+    def right_empty(self):
+        return BinaryTreeNode._empty_node(self.right)
+
+    @staticmethod
+    def _empty_node(node):
+        return node is BinaryTree.EMPTY_NODE
+
 
 class BinaryTree:
-    EMPTY_NODE = BinaryTreeNode(None, None)
+    EMPTY_NODE = BinaryTreeNode()
 
     def __init__(self, root_key=None):
         if root_key is not None:
@@ -39,7 +49,7 @@ class BinaryTree:
 
     def insert(self, key):
         if self.contains(key):
-            return self._get(self.root, key)
+            return self.get(key)
         if self.root is BinaryTree.EMPTY_NODE:
             self.root = BinaryTree._leaf(key)
             return self.root
@@ -57,6 +67,9 @@ class BinaryTree:
             return self._insert(node.left, key)
         elif key > node.value:
             return self._insert(node.right, key)
+
+    def get(self, key):
+        return self._get(self.root, key)
 
     def _get(self, node, key):
         if node.value == key:
