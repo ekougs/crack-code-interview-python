@@ -12,3 +12,6 @@ On Windows
 ----
 ./venv/Lib/pip install -e ./
 ----
+
+== Launch tests
+
